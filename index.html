@@ -188,6 +188,35 @@
   }
   input::placeholder { color: #bbb; font-weight: 400; }
 
+  .input-with-btn {
+    display: flex;
+    gap: 8px;
+    align-items: stretch;
+  }
+  .input-with-btn input { flex: 1; }
+  .btn-estimate {
+    flex-shrink: 0;
+    background: var(--steel-blue);
+    color: var(--white);
+    border: none;
+    padding: 0 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .btn-estimate:hover {
+    background: var(--dark-blue);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(75,124,155,0.3);
+  }
+  .btn-estimate:active { transform: translateY(0); }
+
   .btn-calculate {
     display: inline-flex;
     align-items: center;
@@ -234,6 +263,37 @@
     align-items: center;
     flex-wrap: wrap;
     margin-top: 16px;
+  }
+
+  /* ── PROTOCOL INFO ── */
+  .protocol-info {
+    background: linear-gradient(135deg, #F0F4F8 0%, #E8EDF2 100%);
+    border: 1px solid #D0D8E0;
+    border-left: 4px solid var(--steel-blue);
+    border-radius: 0 8px 8px 0;
+    padding: 18px 20px;
+    margin-bottom: 22px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--charcoal);
+  }
+  .protocol-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--usa-navy);
+    margin-bottom: 8px;
+  }
+  .protocol-info p { margin-bottom: 8px; }
+  .protocol-info p:last-child { margin-bottom: 0; }
+  .protocol-info ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+  .protocol-info li {
+    margin-bottom: 4px;
   }
 
   /* ── ERROR MSG ── */
@@ -577,6 +637,19 @@
     <div class="card-header"><span class="icon">&#9201;</span> Enter Your Test Times</div>
     <div class="card-body">
 
+      <!-- Test Protocol Info -->
+      <div class="protocol-info">
+        <div class="protocol-title">&#9432; How to Perform the Swim Test</div>
+        <p>This calculator requires times from a <strong>100/500</strong> or <strong>200/800</strong> swim test performed as a single back-to-back effort with <strong>1 minute of recovery</strong> between the two distances.</p>
+        <ul>
+          <li><strong>Short distance (100 or 200):</strong> Swim as fast as possible — this is an all-out sprint effort from a push start.</li>
+          <li><strong>Rest 1 minute</strong>, then immediately begin the longer distance.</li>
+          <li><strong>Long distance (500 or 800):</strong> Swim at the fastest pace you can sustain for the full distance — hard but controlled.</li>
+        </ul>
+        <p>Accurate test times are essential for reliable pace zones. Long-course athletes (70.3 / Ironman) are encouraged to use the 200/800 test for better race-specific data, while short-course athletes may prefer the 100/500.</p>
+        <p><strong>New to swimming?</strong> If you know your short distance time but haven't yet completed the full test, use the <strong>&#9889; Estimate</strong> button next to the longer distance field. It will calculate an approximate time based on your short distance multiplied out and adding 25%. This is a starting point — completing the full test will always give you more accurate pace zones.</p>
+      </div>
+
       <!-- Toggles -->
       <div class="toggle-row">
         <div>
@@ -611,7 +684,10 @@
         </div>
         <div class="input-group">
           <label id="label2">500 Time <span class="hint">MM:SS</span></label>
-          <input type="text" id="time2" placeholder="10:00" maxlength="8" autocomplete="off">
+          <div class="input-with-btn">
+            <input type="text" id="time2" placeholder="10:00" maxlength="8" autocomplete="off">
+            <button type="button" class="btn-estimate" id="btnEstimate" onclick="estimateLong()" title="Estimate from your short distance time">&#9889; Estimate</button>
+          </div>
         </div>
       </div>
 
@@ -863,6 +939,38 @@
   }
 
   // ── MAIN CALCULATE ──
+  // ── ESTIMATE LONG DISTANCE FROM SHORT ──
+  // 100/500 mode: 100 time × 5 × 1.25
+  // 200/800 mode: 200 time × 4 × 1.25
+  window.estimateLong = function() {
+    const secs1 = parseTime(document.getElementById('time1').value);
+    if (secs1 === null) {
+      const errEl = document.getElementById('errorMsg');
+      errEl.textContent = 'Enter your ' + (testType === '100' ? '100' : '200') + ' time first, then click Estimate.';
+      errEl.style.display = 'block';
+      return;
+    }
+    document.getElementById('errorMsg').style.display = 'none';
+
+    let estimated;
+    if (testType === '100') {
+      estimated = secs1 * 5 * 1.25;  // 100 → 500
+    } else {
+      estimated = secs1 * 4 * 1.25;  // 200 → 800
+    }
+
+    document.getElementById('time2').value = fmtTime(estimated);
+
+    // Brief highlight animation on the field
+    const field = document.getElementById('time2');
+    field.style.borderColor = 'var(--steel-blue)';
+    field.style.boxShadow = '0 0 0 3px rgba(75,124,155,0.25)';
+    setTimeout(function() {
+      field.style.borderColor = '';
+      field.style.boxShadow = '';
+    }, 1200);
+  };
+
   window.calculate = function() {
     const errEl = document.getElementById('errorMsg');
     errEl.style.display = 'none';
