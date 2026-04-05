@@ -56,11 +56,7 @@
     gap: 20px;
     padding: 12px 24px;
   }
-  .header-logo {
-    height: 56px;
-    width: auto;
-    flex-shrink: 0;
-  }
+  .header-logo { height: 56px; width: auto; flex-shrink: 0; }
   .header-text { flex: 1; }
   .header-title {
     font-family: 'Bebas Neue', sans-serif;
@@ -84,7 +80,7 @@
     padding: 24px 24px 60px;
   }
 
-  /* ── CARD STYLE ── */
+  /* ── CARD ── */
   .card {
     background: var(--white);
     border-radius: 10px;
@@ -105,35 +101,110 @@
     align-items: center;
     gap: 10px;
   }
-  .card-header .icon {
-    font-size: 1.2rem;
-  }
+  .card-header .icon { font-size: 1.2rem; }
   .card-body { padding: 24px; }
 
-  /* ── INPUT SECTION ── */
-  .input-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  .input-group { display: flex; flex-direction: column; gap: 6px; }
-  .input-group label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 600;
+  /* ── PROTOCOL INFO ── */
+  .protocol-info {
+    background: linear-gradient(135deg, #F0F4F8 0%, #E8EDF2 100%);
+    border: 1px solid #D0D8E0;
+    border-left: 4px solid var(--steel-blue);
+    border-radius: 0 8px 8px 0;
+    padding: 18px 20px;
+    margin-bottom: 22px;
     font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--charcoal);
+  }
+  .protocol-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--usa-navy);
+    margin-bottom: 8px;
+  }
+  .protocol-info p { margin-bottom: 8px; }
+  .protocol-info p:last-child { margin-bottom: 0; }
+  .protocol-info ul { margin: 8px 0; padding-left: 20px; }
+  .protocol-info li { margin-bottom: 4px; }
+
+  /* ── ABILITY SELECTOR ── */
+  .ability-section { margin-bottom: 24px; }
+  .ability-question {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--usa-navy);
+    margin-bottom: 14px;
   }
-  .input-group .hint {
-    font-size: 0.78rem;
-    color: #888;
-    font-weight: 400;
-    text-transform: none;
-    letter-spacing: 0;
+  .ability-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
   }
+  .ability-card { position: relative; cursor: pointer; }
+  .ability-card input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+  .ability-card-inner {
+    border: 2px solid var(--light-gray);
+    border-radius: 10px;
+    padding: 18px 16px 16px;
+    text-align: center;
+    transition: all 0.2s;
+    background: var(--white);
+    height: 100%;
+  }
+  .ability-card:hover .ability-card-inner {
+    border-color: var(--steel-blue);
+    background: #F4F8FB;
+  }
+  .ability-card input:checked + .ability-card-inner {
+    border-color: var(--usa-navy);
+    background: var(--usa-navy);
+  }
+  .ability-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--usa-navy);
+    display: block;
+    margin-bottom: 6px;
+    transition: color 0.2s;
+  }
+  .ability-card input:checked + .ability-card-inner .ability-name { color: var(--white); }
+  .ability-desc {
+    font-size: 0.82rem;
+    color: #777;
+    line-height: 1.4;
+    transition: color 0.2s;
+    display: block;
+  }
+  .ability-card input:checked + .ability-card-inner .ability-desc { color: rgba(255,255,255,0.75); }
+  .ability-badge {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .badge-beginner { background: #E8F5E9; color: #2E7D32; }
+  .badge-advanced { background: #E3F2FD; color: #1565C0; }
+  .badge-elite    { background: #FFF3E0; color: #E65100; }
+  .ability-card input:checked + .ability-card-inner .badge-beginner { background: rgba(255,255,255,0.2); color: #A5D6A7; }
+  .ability-card input:checked + .ability-card-inner .badge-advanced { background: rgba(255,255,255,0.2); color: #90CAF9; }
+  .ability-card input:checked + .ability-card-inner .badge-elite    { background: rgba(255,255,255,0.2); color: #FFCC80; }
 
-  /* Toggle switches */
+  /* ── TOGGLES ── */
   .toggle-row {
     display: flex;
     gap: 16px;
@@ -163,12 +234,33 @@
     text-align: center;
   }
   .toggle-group input { display: none; }
-  .toggle-group input:checked + label,
-  .toggle-group label.active {
+  .toggle-group input:checked + label {
     background: var(--usa-navy);
     color: var(--white);
   }
 
+  /* ── INPUTS ── */
+  .input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .input-group { display: flex; flex-direction: column; gap: 6px; }
+  .input-group label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--usa-navy);
+  }
+  .input-group .hint {
+    font-size: 0.78rem;
+    color: #888;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+  }
   input[type="text"], input[type="number"] {
     font-family: 'Source Sans 3', sans-serif;
     font-size: 1.35rem;
@@ -187,12 +279,7 @@
     box-shadow: 0 0 0 3px rgba(75,124,155,0.15);
   }
   input::placeholder { color: #bbb; font-weight: 400; }
-
-  .input-with-btn {
-    display: flex;
-    gap: 8px;
-    align-items: stretch;
-  }
+  .input-with-btn { display: flex; gap: 8px; align-items: stretch; }
   .input-with-btn input { flex: 1; }
   .btn-estimate {
     flex-shrink: 0;
@@ -210,13 +297,9 @@
     transition: all 0.2s;
     white-space: nowrap;
   }
-  .btn-estimate:hover {
-    background: var(--dark-blue);
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(75,124,155,0.3);
-  }
-  .btn-estimate:active { transform: translateY(0); }
+  .btn-estimate:hover { background: var(--dark-blue); }
 
+  /* ── BUTTONS ── */
   .btn-calculate {
     display: inline-flex;
     align-items: center;
@@ -239,7 +322,6 @@
     box-shadow: 0 4px 12px rgba(227,24,55,0.3);
   }
   .btn-calculate:active { transform: translateY(0); }
-
   .btn-print {
     display: inline-flex;
     align-items: center;
@@ -256,7 +338,6 @@
     transition: all 0.2s;
   }
   .btn-print:hover { background: var(--dark-blue); }
-
   .btn-row {
     display: flex;
     gap: 12px;
@@ -265,38 +346,7 @@
     margin-top: 16px;
   }
 
-  /* ── PROTOCOL INFO ── */
-  .protocol-info {
-    background: linear-gradient(135deg, #F0F4F8 0%, #E8EDF2 100%);
-    border: 1px solid #D0D8E0;
-    border-left: 4px solid var(--steel-blue);
-    border-radius: 0 8px 8px 0;
-    padding: 18px 20px;
-    margin-bottom: 22px;
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: var(--charcoal);
-  }
-  .protocol-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--usa-navy);
-    margin-bottom: 8px;
-  }
-  .protocol-info p { margin-bottom: 8px; }
-  .protocol-info p:last-child { margin-bottom: 0; }
-  .protocol-info ul {
-    margin: 8px 0;
-    padding-left: 20px;
-  }
-  .protocol-info li {
-    margin-bottom: 4px;
-  }
-
-  /* ── ERROR MSG ── */
+  /* ── ERROR ── */
   .error-msg {
     background: #FFF3F3;
     border-left: 4px solid var(--usa-red);
@@ -311,10 +361,9 @@
   /* ── RESULTS ── */
   #results { display: none; }
   #results.visible { display: block; animation: fadeUp 0.4s ease; }
-
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
   .test-summary {
@@ -358,8 +407,6 @@
     letter-spacing: 0.06em;
     padding: 10px 8px;
     text-align: center;
-    position: sticky;
-    top: 0;
     white-space: nowrap;
   }
   table.pace-table thead th:first-child {
@@ -367,10 +414,7 @@
     padding-left: 14px;
     min-width: 130px;
   }
-
-  table.pace-table tbody tr { transition: background 0.15s; }
   table.pace-table tbody tr:hover { filter: brightness(0.96); }
-
   table.pace-table tbody td {
     padding: 9px 8px;
     text-align: center;
@@ -397,13 +441,11 @@
     margin-right: 6px;
     vertical-align: middle;
   }
-
   tr.zone-v2 { background: var(--zone-v2-bg); }
   tr.zone-v3 { background: var(--zone-v3-bg); }
   tr.zone-v4 { background: var(--zone-v4-bg); }
   tr.zone-v5 { background: var(--zone-v5-bg); }
   tr.zone-v6 { background: var(--zone-v6-bg); }
-
   .pace-per-100 {
     font-size: 0.75rem;
     color: #888;
@@ -435,11 +477,7 @@
     gap: 12px;
     margin-bottom: 16px;
   }
-  .balance-card {
-    padding: 14px;
-    border-radius: 8px;
-    text-align: center;
-  }
+  .balance-card { padding: 14px; border-radius: 8px; text-align: center; }
   .balance-card-label {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 0.78rem;
@@ -454,19 +492,12 @@
     font-size: 1.8rem;
     letter-spacing: 0.03em;
   }
-  .balance-card.predicted {
-    background: var(--zone-v5-bg);
-    border: 1px solid #90CAF9;
-  }
+  .balance-card.predicted { background: var(--zone-v5-bg); border: 1px solid #90CAF9; }
   .balance-card.predicted .balance-card-label { color: var(--zone-v5); }
   .balance-card.predicted .balance-card-value { color: var(--zone-v5); }
-  .balance-card.actual {
-    background: #FFF8E1;
-    border: 1px solid #FFE082;
-  }
+  .balance-card.actual { background: #FFF8E1; border: 1px solid #FFE082; }
   .balance-card.actual .balance-card-label { color: #F57F17; }
   .balance-card.actual .balance-card-value { color: #F57F17; }
-
   .balance-verdict {
     padding: 14px 18px;
     border-radius: 8px;
@@ -474,28 +505,12 @@
     font-size: 0.95rem;
     line-height: 1.5;
   }
-  .verdict-balanced {
-    background: #E8F5E9;
-    border: 1px solid #A5D6A7;
-    color: #2E7D32;
-  }
-  .verdict-speed {
-    background: #FFF3E0;
-    border: 1px solid #FFCC80;
-    color: #E65100;
-  }
-  .verdict-endurance {
-    background: #E3F2FD;
-    border: 1px solid #90CAF9;
-    color: #1565C0;
-  }
+  .verdict-balanced  { background: #E8F5E9; border: 1px solid #A5D6A7; color: #2E7D32; }
+  .verdict-speed     { background: #FFF3E0; border: 1px solid #FFCC80; color: #E65100; }
+  .verdict-endurance { background: #E3F2FD; border: 1px solid #90CAF9; color: #1565C0; }
 
   /* ── SHORTHAND REFERENCE ── */
-  .ref-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-  }
+  .ref-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   .ref-section-title {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
@@ -522,19 +537,13 @@
     min-width: 80px;
     letter-spacing: 0.03em;
   }
-  .ref-desc {
-    font-size: 0.88rem;
-    color: var(--charcoal);
-  }
-
-  /* ── HOW TO READ ── */
+  .ref-desc { font-size: 0.88rem; color: var(--charcoal); }
   .example-workout {
     background: #F8FAFC;
     border: 1px solid #E2E8F0;
     border-radius: 8px;
     padding: 18px;
     margin-top: 16px;
-    font-family: 'Source Sans 3', monospace;
     font-size: 0.9rem;
     line-height: 1.8;
   }
@@ -548,12 +557,7 @@
     margin-bottom: 8px;
     display: block;
   }
-  .anno {
-    color: var(--steel-blue);
-    font-size: 0.8rem;
-    font-style: italic;
-    font-weight: 400;
-  }
+  .anno { color: var(--steel-blue); font-size: 0.8rem; font-style: italic; }
 
   /* ── FOOTER ── */
   .site-footer {
@@ -589,6 +593,7 @@
     .test-summary .summary-chip { padding: 4px 10px; font-size: 0.82rem; }
     .site-footer { font-size: 0.7rem; padding: 10px 0; }
     #results.visible { display: block !important; }
+    .ability-section { display: none; }
   }
 
   /* ── RESPONSIVE ── */
@@ -603,6 +608,7 @@
     .ref-grid { grid-template-columns: 1fr; }
     .toggle-group label { padding: 8px 14px; font-size: 0.85rem; min-width: 70px; }
     .balance-grid { grid-template-columns: 1fr; }
+    .ability-cards { grid-template-columns: 1fr; }
     table.pace-table { font-size: 0.8rem; }
     table.pace-table tbody td { padding: 7px 5px; font-size: 0.82rem; }
   }
@@ -637,7 +643,7 @@
     <div class="card-header"><span class="icon">&#9201;</span> Enter Your Test Times</div>
     <div class="card-body">
 
-      <!-- Test Protocol Info -->
+      <!-- Protocol Info -->
       <div class="protocol-info">
         <div class="protocol-title">&#9432; How to Perform the Swim Test</div>
         <p>This calculator requires times from a <strong>100/500</strong> or <strong>200/800</strong> swim test performed as a single back-to-back effort with <strong>1 minute of recovery</strong> between the two distances.</p>
@@ -650,28 +656,55 @@
         <p><strong>New to swimming?</strong> If you know your short distance time but haven't yet completed the full test, use the <strong>&#9889; Estimate</strong> button next to the longer distance field. It will calculate an approximate time based on your short distance multiplied out and adding 25%. This is a starting point — completing the full test will always give you more accurate pace zones.</p>
       </div>
 
-      <!-- Toggles -->
+      <!-- Ability Level Selector -->
+      <div class="ability-section">
+        <div class="ability-question">Which group best describes your ability as a swimmer?</div>
+        <div class="ability-cards">
+          <label class="ability-card">
+            <input type="radio" name="abilityLevel" value="beginner" checked>
+            <div class="ability-card-inner">
+              <span class="ability-name">Beginner</span>
+              <span class="ability-desc">Untrained swimmer or returning after an extended break from the sport</span>
+              <span class="ability-badge badge-beginner">New / Returning</span>
+            </div>
+          </label>
+          <label class="ability-card">
+            <input type="radio" name="abilityLevel" value="advanced">
+            <div class="ability-card-inner">
+              <span class="ability-name">Advanced</span>
+              <span class="ability-desc">Regular swimmer, competitive masters athlete, or triathlete finishing in the top 20% in the swim</span>
+              <span class="ability-badge badge-advanced">Top 20%</span>
+            </div>
+          </label>
+          <label class="ability-card">
+            <input type="radio" name="abilityLevel" value="elite">
+            <div class="ability-card-inner">
+              <span class="ability-name">Elite</span>
+              <span class="ability-desc">Competitive swimmer or elite triathlete who exits the water at the front of the field</span>
+              <span class="ability-badge badge-elite">Front of Field</span>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Test Type / Pool Type Toggles -->
       <div class="toggle-row">
         <div>
-          <div class="input-group" style="margin-bottom:6px;">
-            <label>Test Type</label>
-          </div>
+          <div class="input-group" style="margin-bottom:6px;"><label>Test Type</label></div>
           <div class="toggle-group" id="testToggle">
             <input type="radio" name="testType" id="test100" value="100" checked>
-            <label for="test100" class="active" onclick="setTestType('100')">100 / 500</label>
+            <label for="test100">100 / 500</label>
             <input type="radio" name="testType" id="test200" value="200">
-            <label for="test200" onclick="setTestType('200')">200 / 800</label>
+            <label for="test200">200 / 800</label>
           </div>
         </div>
         <div>
-          <div class="input-group" style="margin-bottom:6px;">
-            <label>Pool Type</label>
-          </div>
+          <div class="input-group" style="margin-bottom:6px;"><label>Pool Type</label></div>
           <div class="toggle-group" id="poolToggle">
             <input type="radio" name="poolType" id="poolYards" value="yards" checked>
-            <label for="poolYards" class="active" onclick="setPoolType('yards')">Yards</label>
+            <label for="poolYards">Yards</label>
             <input type="radio" name="poolType" id="poolMeters" value="meters">
-            <label for="poolMeters" onclick="setPoolType('meters')">Meters</label>
+            <label for="poolMeters">Meters</label>
           </div>
         </div>
       </div>
@@ -686,7 +719,7 @@
           <label id="label2">500 Time <span class="hint">MM:SS</span></label>
           <div class="input-with-btn">
             <input type="text" id="time2" placeholder="10:00" maxlength="8" autocomplete="off">
-            <button type="button" class="btn-estimate" id="btnEstimate" onclick="estimateLong()" title="Estimate from your short distance time">&#9889; Estimate</button>
+            <button type="button" class="btn-estimate" id="btnEstimate" title="Estimate from your short distance time">&#9889; Estimate</button>
           </div>
         </div>
       </div>
@@ -694,7 +727,7 @@
       <div class="error-msg" id="errorMsg"></div>
 
       <div class="btn-row">
-        <button class="btn-calculate" onclick="calculate()">&#9654; Calculate Paces</button>
+        <button class="btn-calculate" id="btnCalc">&#9654; Calculate Paces</button>
       </div>
     </div>
   </div>
@@ -702,7 +735,6 @@
   <!-- ── RESULTS ── -->
   <div id="results">
 
-    <!-- Summary chips -->
     <div class="test-summary" id="summaryChips"></div>
 
     <!-- Pace Table -->
@@ -714,28 +746,19 @@
             <thead>
               <tr>
                 <th>Zone</th>
-                <th>50</th>
-                <th>75</th>
-                <th>100</th>
-                <th>125</th>
-                <th>150</th>
-                <th>175</th>
-                <th>200</th>
-                <th>250</th>
-                <th>300</th>
-                <th>400</th>
+                <th>50</th><th>75</th><th>100</th><th>125</th><th>150</th>
+                <th>175</th><th>200</th><th>250</th><th>300</th><th>400</th>
               </tr>
             </thead>
             <tbody id="paceBody"></tbody>
           </table>
         </div>
 
-        <!-- Balance Analysis (conditionally shown) -->
         <div id="balanceSection" class="balance-section" style="display:none;"></div>
 
         <div class="btn-row no-print">
           <button class="btn-print" onclick="window.print()">&#128424; Print Results</button>
-          <button class="btn-calculate" style="background:var(--steel-blue);" onclick="document.getElementById('inputCard').scrollIntoView({behavior:'smooth'})">&#9998; Edit Inputs</button>
+          <button class="btn-calculate" style="background:var(--steel-blue);" id="btnEdit">&#9998; Edit Inputs</button>
         </div>
       </div>
     </div>
@@ -760,8 +783,8 @@
           </div>
           <div>
             <div class="ref-section-title">Rest & Recovery</div>
-            <div class="ref-item"><span class="ref-abbr">RPS</span><span class="ref-desc">Rest Per Set — seconds of rest between each rep within a set (e.g. between each 50 in 8×50)</span></div>
-            <div class="ref-item"><span class="ref-abbr">RBB</span><span class="ref-desc">Rest Between Blocks — rest between blocks within a set (e.g. after each group of 8×50 in 3×8×50)</span></div>
+            <div class="ref-item"><span class="ref-abbr">RPS</span><span class="ref-desc">Rest Per Set — seconds of rest between each rep within a set (e.g. between each 50 in 8&times;50)</span></div>
+            <div class="ref-item"><span class="ref-abbr">RBB</span><span class="ref-desc">Rest Between Blocks — rest between blocks within a set (e.g. after each group of 8&times;50 in 3&times;8&times;50)</span></div>
             <div class="ref-item"><span class="ref-abbr">RAS</span><span class="ref-desc">Rest After Set — total rest taken after the entire set before moving to the next one</span></div>
 
             <div class="ref-section-title" style="margin-top:18px;">Stroke Types</div>
@@ -775,17 +798,16 @@
           </div>
         </div>
 
-        <!-- How to read example -->
         <div class="example-workout">
           <span class="label">Example: How to Read a Workout</span>
-          <strong>4 × 150 @V3, 15RPS, 30RAS</strong><br>
-          <span class="anno">→ Swim 4 repetitions of 150 at your V3 (Endurance) pace.</span><br>
-          <span class="anno">→ Take 15 seconds rest between each of the 4 reps.</span><br>
-          <span class="anno">→ Take 30 seconds rest after completing all 4 before moving on.</span><br><br>
-          <strong>4 (2 × 25) kick @VM, 20RPS, 30RBB</strong><br>
-          <span class="anno">→ 4 blocks of 2×25 kick at moderate effort.</span><br>
-          <span class="anno">→ 20 seconds rest between each 25 within a block.</span><br>
-          <span class="anno">→ 30 seconds rest between each block of 2×25.</span>
+          <strong>4 &times; 150 @V3, 15RPS, 30RAS</strong><br>
+          <span class="anno">&#8594; Swim 4 repetitions of 150 at your V3 (Endurance) pace.</span><br>
+          <span class="anno">&#8594; Take 15 seconds rest between each of the 4 reps.</span><br>
+          <span class="anno">&#8594; Take 30 seconds rest after completing all 4 before moving on.</span><br><br>
+          <strong>4 (2 &times; 25) kick @VM, 20RPS, 30RBB</strong><br>
+          <span class="anno">&#8594; 4 blocks of 2&times;25 kick at moderate effort.</span><br>
+          <span class="anno">&#8594; 20 seconds rest between each 25 within a block.</span><br>
+          <span class="anno">&#8594; 30 seconds rest between each block of 2&times;25.</span>
         </div>
       </div>
     </div>
@@ -802,44 +824,42 @@
 <!-- ═══════════════ SCRIPT ═══════════════ -->
 <script>
 (function(){
-  // ── STATE ──
-  let testType = '100'; // '100' or '200'
-  let poolType = 'yards';
 
   // ── CONSTANTS ──
-  const DISTANCES = [50, 75, 100, 125, 150, 175, 200, 250, 300, 400];
+  const DISTANCES   = [50, 75, 100, 125, 150, 175, 200, 250, 300, 400];
   const MULTIPLIERS = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.5, 3, 4];
 
-  // Degradation factor sets
   const SET_A = [0.1123, 0.07, 0.0421, 0.03755, 0.0341, 0.03142, 0.0295, 0.026, 0.02362, 0.0202];
   const SET_B = [0.1436, 0.09291, 0.0734, 0.06143, 0.053, 0.04678, 0.0422, 0.039065, 0.03615, 0.0301];
 
   const ZONES = [
-    { id:'v2', name:'V2 — Recovery',    color:'#607D8B', bg:'zone-v2', baseKey:'adjusted', factors: SET_A },
-    { id:'v3', name:'V3 — Endurance',   color:'#E91E8C', bg:'zone-v3', baseKey:'adjusted', factors: SET_B },
-    { id:'v4', name:'V4 — Threshold',   color:'#E31837', bg:'zone-v4', baseKey:'raw',      factors: SET_A },
-    { id:'v5', name:'V5 — VO2max',      color:'#1976D2', bg:'zone-v5', baseKey:'raw',      factors: SET_B },
-    { id:'v6', name:'V6 — Speed',       color:'#7B1FA2', bg:'zone-v6', baseKey:'speed',    factors: SET_B },
+    { id:'v2', name:'V2 — Recovery',  color:'#607D8B', bg:'zone-v2', baseKey:'adjusted', factors: SET_A },
+    { id:'v3', name:'V3 — Endurance', color:'#E91E8C', bg:'zone-v3', baseKey:'adjusted', factors: SET_B },
+    { id:'v4', name:'V4 — Threshold', color:'#E31837', bg:'zone-v4', baseKey:'raw',      factors: SET_A },
+    { id:'v5', name:'V5 — VO2max',    color:'#1976D2', bg:'zone-v5', baseKey:'raw',      factors: SET_B },
+    { id:'v6', name:'V6 — Speed',     color:'#7B1FA2', bg:'zone-v6', baseKey:'speed',    factors: SET_B },
   ];
 
-  // ── TOGGLE HANDLERS ──
-  window.setTestType = function(val) {
-    testType = val;
-    const labels = document.querySelectorAll('#testToggle label');
-    labels.forEach(l => l.classList.remove('active'));
-    document.querySelector(`label[for="test${val === '100' ? '100' : '200'}"]`).classList.add('active');
-    updateLabels();
+  // Ability level modifiers — fraction added to calculated zone time
+  const ABILITY_MODS = {
+    beginner: { v2: 0,      v3: 0,      v4: 0,     v5: 0,     v6: 0     },
+    advanced: { v2: 0.05,   v3: 0.0425, v4: 0.035, v5: 0.03,  v6: 0.025 },
+    elite:    { v2: 0.10,   v3: 0.085,  v4: 0.07,  v5: 0.055, v6: 0.04  }
   };
 
-  window.setPoolType = function(val) {
-    poolType = val;
-    const labels = document.querySelectorAll('#poolToggle label');
-    labels.forEach(l => l.classList.remove('active'));
-    document.querySelector(`label[for="pool${val === 'yards' ? 'Yards' : 'Meters'}"]`).classList.add('active');
-  };
+  // ── HELPERS ──
+  function getAbility()  { return document.querySelector('input[name="abilityLevel"]:checked').value; }
+  function getTestType() { return document.querySelector('input[name="testType"]:checked').value; }
+  function getPoolType() { return document.querySelector('input[name="poolType"]:checked').value; }
+
+  // ── LABEL UPDATES ──
+  document.querySelectorAll('input[name="testType"]').forEach(function(r) {
+    r.addEventListener('change', updateLabels);
+  });
 
   function updateLabels() {
-    if (testType === '100') {
+    var t = getTestType();
+    if (t === '100') {
       document.getElementById('label1').innerHTML = '100 Time <span class="hint">MM:SS</span>';
       document.getElementById('label2').innerHTML = '500 Time <span class="hint">MM:SS</span>';
       document.getElementById('time1').placeholder = '1:45';
@@ -852,40 +872,29 @@
     }
   }
 
-  // ── PARSE TIME INPUT (MM:SS or M:SS format) ──
+  // ── PARSE TIME (MM:SS) ──
   function parseTime(raw) {
     if (!raw || raw.trim() === '') return null;
     raw = raw.trim();
-
-    // Handle MM:SS or M:SS format
     if (raw.includes(':')) {
-      const parts = raw.split(':');
-      const mins = parseInt(parts[0]) || 0;
-      const secs = parseInt(parts[1]) || 0;
+      var parts = raw.split(':');
+      var mins = parseInt(parts[0]) || 0;
+      var secs = parseInt(parts[1]) || 0;
       if (secs >= 60 || secs < 0 || mins < 0) return null;
       return mins * 60 + secs;
     }
-
-    // Handle plain seconds (e.g. "45" for 0:45)
-    const n = parseInt(raw);
+    var n = parseInt(raw);
     if (isNaN(n) || n <= 0) return null;
-    if (n < 60) return n; // treat as seconds only
-    return null; // require colon for anything >= 60
+    if (n < 60) return n;
+    return null;
   }
 
-  // ── AUTO-FORMAT: insert colon as user types digits ──
+  // ── AUTO-FORMAT TIME INPUT ──
   function autoFormatTime(e) {
-    const input = e.target;
-    let val = input.value;
-    const key = e.data; // the character just typed (for 'input' event)
-
-    // Strip everything except digits and colon
-    let clean = val.replace(/[^\d:]/g, '');
-
-    // If user already has a colon, leave it alone
+    var input = e.target;
+    var clean = input.value.replace(/[^\d:]/g, '');
     if (clean.includes(':')) {
-      // Enforce max 2 digits after colon
-      const parts = clean.split(':');
+      var parts = clean.split(':');
       if (parts[1] && parts[1].length > 2) {
         parts[1] = parts[1].substring(0, 2);
         clean = parts[0] + ':' + parts[1];
@@ -893,247 +902,188 @@
       input.value = clean;
       return;
     }
-
-    // Auto-insert colon after first 1-2 digits when user types 3rd digit
-    // e.g. "1" → "1", "14" → "14", "145" → "1:45", "10" → "10", "100" → "10:0", "1000" → "10:00"
     if (clean.length >= 3) {
-      // Decide where the colon goes: if total > 2 digits, split so right side has 2
-      const secspart = clean.slice(-2);
-      const minspart = clean.slice(0, -2);
+      var secspart = clean.slice(-2);
+      var minspart = clean.slice(0, -2);
       clean = minspart + ':' + secspart;
     }
-
     input.value = clean;
   }
 
-  // Attach auto-format to all time inputs
   ['time1', 'time2'].forEach(function(id) {
     document.getElementById(id).addEventListener('input', autoFormatTime);
   });
 
-  // ── FORMAT SECONDS TO DISPLAY ──
+  // ── FORMAT SECONDS → MM:SS ──
   function fmtTime(totalSecs) {
     if (totalSecs < 0) totalSecs = 0;
-    const mins = Math.floor(totalSecs / 60);
-    const secs = totalSecs - mins * 60;
-    const whole = Math.floor(secs);
-    // Show clean format: M:SS for whole seconds, M:SS.t if fractional matters
-    if (mins === 0) {
-      return '0:' + whole.toString().padStart(2,'0');
-    }
-    return mins + ':' + whole.toString().padStart(2,'0');
+    var mins  = Math.floor(totalSecs / 60);
+    var whole = Math.floor(totalSecs - mins * 60);
+    return (mins === 0 ? '0' : mins) + ':' + whole.toString().padStart(2, '0');
   }
 
-  // ── CALCULATE ZONE TIME ──
+  // ── ZONE TIME CALCULATION ──
   function calcZoneTime(base, distIndex) {
-    const mult = MULTIPLIERS[distIndex];
-    const rawTime = base.value * mult;
-    const deg = base.factors[distIndex];
+    var rawTime = base.value * MULTIPLIERS[distIndex];
+    var deg     = base.factors[distIndex];
     return rawTime - (rawTime * deg);
   }
 
-  // ── PACE PER 100 ──
-  function pacePer100(totalSecs, distIndex) {
-    const dist = DISTANCES[distIndex];
-    return totalSecs / (dist / 100);
-  }
-
-  // ── MAIN CALCULATE ──
-  // ── ESTIMATE LONG DISTANCE FROM SHORT ──
-  // 100/500 mode: 100 time × 5 × 1.25
-  // 200/800 mode: 200 time × 4 × 1.25
-  window.estimateLong = function() {
-    const secs1 = parseTime(document.getElementById('time1').value);
+  // ── ESTIMATE LONG DISTANCE ──
+  document.getElementById('btnEstimate').addEventListener('click', function() {
+    var secs1 = parseTime(document.getElementById('time1').value);
+    var errEl = document.getElementById('errorMsg');
     if (secs1 === null) {
-      const errEl = document.getElementById('errorMsg');
-      errEl.textContent = 'Enter your ' + (testType === '100' ? '100' : '200') + ' time first, then click Estimate.';
+      errEl.textContent = 'Enter your ' + (getTestType() === '100' ? '100' : '200') + ' time first, then click Estimate.';
       errEl.style.display = 'block';
       return;
     }
-    document.getElementById('errorMsg').style.display = 'none';
-
-    let estimated;
-    if (testType === '100') {
-      estimated = secs1 * 5 * 1.25;  // 100 → 500
-    } else {
-      estimated = secs1 * 4 * 1.25;  // 200 → 800
-    }
-
-    document.getElementById('time2').value = fmtTime(estimated);
-
-    // Brief highlight animation on the field
-    const field = document.getElementById('time2');
+    errEl.style.display = 'none';
+    var estimated = getTestType() === '100' ? secs1 * 5 * 1.25 : secs1 * 4 * 1.25;
+    var field = document.getElementById('time2');
+    field.value = fmtTime(estimated);
     field.style.borderColor = 'var(--steel-blue)';
-    field.style.boxShadow = '0 0 0 3px rgba(75,124,155,0.25)';
+    field.style.boxShadow   = '0 0 0 3px rgba(75,124,155,0.25)';
     setTimeout(function() {
       field.style.borderColor = '';
-      field.style.boxShadow = '';
+      field.style.boxShadow   = '';
     }, 1200);
-  };
+  });
 
-  window.calculate = function() {
-    const errEl = document.getElementById('errorMsg');
+  // ── CALCULATE ──
+  document.getElementById('btnCalc').addEventListener('click', calculate);
+  document.getElementById('btnEdit').addEventListener('click', function() {
+    document.getElementById('inputCard').scrollIntoView({ behavior: 'smooth' });
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') calculate();
+  });
+
+  function calculate() {
+    var errEl = document.getElementById('errorMsg');
     errEl.style.display = 'none';
 
-    const raw1 = document.getElementById('time1').value;
-    const raw2 = document.getElementById('time2').value;
-
-    const secs1 = parseTime(raw1);
-    const secs2 = parseTime(raw2);
+    var secs1 = parseTime(document.getElementById('time1').value);
+    var secs2 = parseTime(document.getElementById('time2').value);
 
     if (secs1 === null || secs2 === null) {
-      errEl.textContent = 'Please enter valid times in MM:SS format (e.g. 1:45 for one minute forty-five seconds, 10:00 for ten minutes).';
+      errEl.textContent = 'Please enter valid times in MM:SS format (e.g. 1:45 for one minute forty-five seconds).';
       errEl.style.display = 'block';
       return;
     }
 
-    // Derive base pace per 100 (I4) from the LONG distance test
-    // This is the core input that drives all zone calculations
-    // I4 = pace per 100 from the 800 (or predicted 800)
-    let I4, sprintTime, longTime, predicted200, predicted800;
+    var testType = getTestType();
+    var ability  = getAbility();
+    var poolType = getPoolType();
+    var mods     = ABILITY_MODS[ability];
+
+    var I4, sprintTime, longTime, predicted200, predicted800;
 
     if (testType === '100') {
-      sprintTime = secs1;  // 100 sprint time (seconds)
-      longTime = secs2;    // 500 time (seconds)
-      // Predict 800 from 500: (500/5*4) * 2 * 1.03
+      sprintTime   = secs1;
+      longTime     = secs2;
       predicted800 = longTime * 1.648;
-      // Pace per 100 from predicted 800
-      I4 = predicted800 / 8;
-      // Predict 200 from 100: 100 * 2 * 1.09
+      I4           = predicted800 / 8;
       predicted200 = sprintTime * 2.18;
     } else {
-      sprintTime = secs1;  // 200 time (seconds)
-      longTime = secs2;    // 800 time (seconds)
-      // Pace per 100 directly from 800
-      I4 = longTime / 8;
-      // Back-derive predictions
-      predicted200 = sprintTime;  // actual 200
-      predicted800 = longTime;    // actual 800
+      sprintTime   = secs1;
+      longTime     = secs2;
+      I4           = longTime / 8;
+      predicted200 = sprintTime;
+      predicted800 = longTime;
     }
 
-    const J4 = I4 / 0.95;     // Adjusted base for V2, V3 (slightly slower)
-    const CT4 = I4 / 1.037;   // Speed base for V6 (slightly faster)
+    var J4  = I4 / 0.95;
+    var CT4 = I4 / 1.037;
 
-    // Build bases for each zone
-    const bases = {
-      adjusted: { value: J4 },
-      raw:      { value: I4 },
+    var bases = {
+      adjusted: { value: J4  },
+      raw:      { value: I4  },
       speed:    { value: CT4 }
     };
 
-    // ── BUILD PACE TABLE ──
-    const tbody = document.getElementById('paceBody');
+    // Build pace table
+    var tbody = document.getElementById('paceBody');
     tbody.innerHTML = '';
 
-    ZONES.forEach(zone => {
-      const base = { value: bases[zone.baseKey].value, factors: zone.factors };
-      const tr = document.createElement('tr');
+    ZONES.forEach(function(zone) {
+      var base = { value: bases[zone.baseKey].value, factors: zone.factors };
+      var mod  = mods[zone.id];
+      var tr   = document.createElement('tr');
       tr.className = zone.bg;
 
-      // Zone name cell
-      const tdName = document.createElement('td');
-      tdName.innerHTML = `<span class="zone-dot" style="background:${zone.color}"></span>${zone.name}`;
+      var tdName = document.createElement('td');
+      tdName.innerHTML = '<span class="zone-dot" style="background:' + zone.color + '"></span>' + zone.name;
       tr.appendChild(tdName);
 
-      // Distance cells
-      for (let i = 0; i < DISTANCES.length; i++) {
-        const td = document.createElement('td');
-        const time = calcZoneTime(base, i);
-        const pp100 = pacePer100(time, i);
-        td.innerHTML = `${fmtTime(time)}<span class="pace-per-100">${fmtTime(pp100)}/100</span>`;
+      for (var i = 0; i < DISTANCES.length; i++) {
+        var td      = document.createElement('td');
+        var rawTime = calcZoneTime(base, i);
+        var adjTime = rawTime * (1 + mod);
+        var pp100   = adjTime / (DISTANCES[i] / 100);
+        td.innerHTML = fmtTime(adjTime) + '<span class="pace-per-100">' + fmtTime(pp100) + '/100</span>';
         tr.appendChild(td);
       }
       tbody.appendChild(tr);
     });
 
-    // ── SUMMARY CHIPS ──
-    const unit = poolType === 'yards' ? 'yds' : 'm';
-    const chipsEl = document.getElementById('summaryChips');
-    let chipsHTML = '';
+    // Summary chips
+    var abilityLabel  = ability.charAt(0).toUpperCase() + ability.slice(1);
+    var abilityColors = { beginner: '#2E7D32', advanced: '#1565C0', elite: '#E65100' };
+    var chipsEl       = document.getElementById('summaryChips');
+    var chipsHTML     = '';
 
     if (testType === '100') {
-      chipsHTML += `<div class="summary-chip"><span>100 Sprint:</span> ${fmtTime(secs1)}</div>`;
-      chipsHTML += `<div class="summary-chip"><span>500 Time:</span> ${fmtTime(secs2)}</div>`;
-      chipsHTML += `<div class="summary-chip"><span>Base Pace/100:</span> ${fmtTime(I4)}</div>`;
-      chipsHTML += `<div class="summary-chip" style="background:var(--steel-blue);"><span>Predicted 200:</span> ${fmtTime(predicted200)}</div>`;
-      chipsHTML += `<div class="summary-chip" style="background:var(--steel-blue);"><span>Predicted 800:</span> ${fmtTime(predicted800)}</div>`;
+      chipsHTML += '<div class="summary-chip"><span>100 Sprint:</span> '    + fmtTime(secs1) + '</div>';
+      chipsHTML += '<div class="summary-chip"><span>500 Time:</span> '      + fmtTime(secs2) + '</div>';
+      chipsHTML += '<div class="summary-chip"><span>Base Pace/100:</span> ' + fmtTime(I4)    + '</div>';
+      chipsHTML += '<div class="summary-chip" style="background:var(--steel-blue);"><span>Predicted 200:</span> ' + fmtTime(predicted200) + '</div>';
+      chipsHTML += '<div class="summary-chip" style="background:var(--steel-blue);"><span>Predicted 800:</span> ' + fmtTime(predicted800) + '</div>';
     } else {
-      chipsHTML += `<div class="summary-chip"><span>200 Time:</span> ${fmtTime(secs1)}</div>`;
-      chipsHTML += `<div class="summary-chip"><span>800 Time:</span> ${fmtTime(secs2)}</div>`;
-      chipsHTML += `<div class="summary-chip"><span>Base Pace/100:</span> ${fmtTime(I4)}</div>`;
+      chipsHTML += '<div class="summary-chip"><span>200 Time:</span> '      + fmtTime(secs1) + '</div>';
+      chipsHTML += '<div class="summary-chip"><span>800 Time:</span> '      + fmtTime(secs2) + '</div>';
+      chipsHTML += '<div class="summary-chip"><span>Base Pace/100:</span> ' + fmtTime(I4)    + '</div>';
     }
-    chipsHTML += `<div class="summary-chip" style="background:var(--dark-blue);"><span>Pool:</span> ${poolType.charAt(0).toUpperCase() + poolType.slice(1)}</div>`;
+
+    chipsHTML += '<div class="summary-chip" style="background:' + abilityColors[ability] + ';">' + abilityLabel + ' Level</div>';
+    chipsHTML += '<div class="summary-chip" style="background:var(--dark-blue);"><span>Pool:</span> ' + poolType.charAt(0).toUpperCase() + poolType.slice(1) + '</div>';
     chipsEl.innerHTML = chipsHTML;
 
-    // ── BALANCE ANALYSIS (cross-prediction from both inputs) ──
-    // Compare the 200 time predicted from sprint data vs the 200 time
-    // predicted from endurance data. If the swimmer is balanced, these
-    // two independent predictions will closely match.
-    const balanceEl = document.getElementById('balanceSection');
+    // Balance analysis — uses original unmodified base values
+    var sprintPred200 = testType === '100' ? secs1 * 2.18 : secs1;
+    var endurPred200  = CT4 * 2 * (1 - 0.0422);
+    var balDiff       = endurPred200 - sprintPred200;
+    var balPct        = Math.abs(balDiff / sprintPred200) * 100;
+    var absDiffSecs   = Math.abs(balDiff);
+    var shortLabel    = testType === '100' ? 'Your 100 Sprint' : 'Your 200 Sprint';
+    var longLabel     = testType === '100' ? 'Your 500 Endurance' : 'Your 800 Endurance';
 
-    // Sprint-predicted 200: from the short test (100 × 2.18, or actual 200)
-    let sprintPred200, endurPred200, shortLabel, longLabel;
-
-    if (testType === '100') {
-      sprintPred200 = secs1 * 2.18;         // predicted 200 from 100 sprint
-      endurPred200 = CT4 * 2 * (1 - 0.0422); // predicted race 200 from endurance base
-      shortLabel = 'Your 100 Sprint';
-      longLabel = 'Your 500 Endurance';
-    } else {
-      sprintPred200 = secs1;                 // actual 200 IS the sprint data
-      endurPred200 = CT4 * 2 * (1 - 0.0422); // predicted race 200 from 800 endurance base
-      shortLabel = 'Your 200 Sprint';
-      longLabel = 'Your 800 Endurance';
-    }
-
-    const balDiff = endurPred200 - sprintPred200;
-    const balPct = Math.abs(balDiff / sprintPred200) * 100;
-
-    let balHTML = `<div class="balance-title">Aerobic / Anaerobic Balance Analysis</div>`;
-    balHTML += `<div class="balance-grid">`;
-    balHTML += `<div class="balance-card predicted"><div class="balance-card-label">Predicted 200 Based on ${shortLabel} Should Be</div><div class="balance-card-value">${fmtTime(sprintPred200)}</div></div>`;
-    balHTML += `<div class="balance-card actual"><div class="balance-card-label">Predicted 200 Based on ${longLabel} Should Be</div><div class="balance-card-value">${fmtTime(endurPred200)}</div></div>`;
-    balHTML += `</div>`;
-
-    const absDiffSecs = Math.abs(balDiff);
+    var balanceEl = document.getElementById('balanceSection');
+    var balHTML   = '<div class="balance-title">Aerobic / Anaerobic Balance Analysis</div>';
+    balHTML += '<div class="balance-grid">';
+    balHTML += '<div class="balance-card predicted"><div class="balance-card-label">Predicted 200 Based on ' + shortLabel + ' Should Be</div><div class="balance-card-value">' + fmtTime(sprintPred200) + '</div></div>';
+    balHTML += '<div class="balance-card actual"><div class="balance-card-label">Predicted 200 Based on ' + longLabel + ' Should Be</div><div class="balance-card-value">' + fmtTime(endurPred200) + '</div></div>';
+    balHTML += '</div>';
 
     if (balPct <= 3) {
-      balHTML += `<div class="balance-verdict verdict-balanced">
-        <strong>&#9989; Balanced</strong> — Based on your sprint and endurance data, both predict nearly the same 200 time (within ${balPct.toFixed(1)}%).
-        Your aerobic and anaerobic systems are well-balanced. Keep up the current training mix.
-      </div>`;
+      balHTML += '<div class="balance-verdict verdict-balanced"><strong>&#9989; Balanced</strong> — Based on your sprint and endurance data, both predict nearly the same 200 time (within ' + balPct.toFixed(1) + '%). Your aerobic and anaerobic systems are well-balanced. Keep up the current training mix.</div>';
     } else if (balDiff > 0) {
-      // Endurance pred is SLOWER → sprint is stronger than endurance
-      balHTML += `<div class="balance-verdict verdict-speed">
-        <strong>&#9888; Speed-Dominant (${fmtTime(absDiffSecs)} gap, ${balPct.toFixed(1)}%)</strong> — Based on your sprint and endurance data, your sprint predicts a faster 200 than your endurance supports.
-        This suggests your anaerobic speed is more developed than your aerobic conditioning.
-        <br><strong>Focus areas:</strong> base conditioning, strength endurance, and longer aerobic sets.
-      </div>`;
+      balHTML += '<div class="balance-verdict verdict-speed"><strong>&#9888; Speed-Dominant (' + fmtTime(absDiffSecs) + ' gap, ' + balPct.toFixed(1) + '%)</strong> — Your sprint predicts a faster 200 than your endurance supports. Your anaerobic speed is more developed than your aerobic conditioning.<br><strong>Focus areas:</strong> base conditioning, strength endurance, and longer aerobic sets.</div>';
     } else {
-      // Endurance pred is FASTER → endurance is stronger than sprint
-      balHTML += `<div class="balance-verdict verdict-endurance">
-        <strong>&#9888; Endurance-Dominant (${fmtTime(absDiffSecs)} gap, ${balPct.toFixed(1)}%)</strong> — Based on your sprint and endurance data, your endurance predicts a faster 200 than your sprint supports.
-        This suggests your aerobic conditioning is stronger than your speed and power.
-        <br><strong>Focus areas:</strong> speed work, speed endurance, and short power development.
-      </div>`;
+      balHTML += '<div class="balance-verdict verdict-endurance"><strong>&#9888; Endurance-Dominant (' + fmtTime(absDiffSecs) + ' gap, ' + balPct.toFixed(1) + '%)</strong> — Your endurance predicts a faster 200 than your sprint supports. Your aerobic conditioning is stronger than your speed and power.<br><strong>Focus areas:</strong> speed work, speed endurance, and short power development.</div>';
     }
 
     balanceEl.innerHTML = balHTML;
     balanceEl.style.display = 'block';
 
-    // Show results
-    const resultsEl = document.getElementById('results');
+    var resultsEl = document.getElementById('results');
     resultsEl.classList.add('visible');
     resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
+  }
 
   // ── INIT ──
   updateLabels();
 
-  // Enter key triggers calculate
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') calculate();
-  });
 })();
 </script>
 
