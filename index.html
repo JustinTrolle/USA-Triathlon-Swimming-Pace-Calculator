@@ -1914,6 +1914,8 @@
   syncPrintSelection();
 
   // ── INIT ──
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.scrollTo(0, 0);
   updateLabels();
   updateBreakoutUnit();
   updateSpmNote();
@@ -1921,19 +1923,6 @@
 })();
 </script>
 
-<!-- PREVIEW ONLY: pre-fills sample test data and runs the calculation so results are visible. Delete this block before publishing. -->
-<script>
-window.addEventListener('load', function () {
-  document.getElementById('time1').value = '1:30';
-  document.getElementById('time2').value = '7:45';
-  document.getElementById('spl1').value = '17';
-  document.getElementById('spl2').value = '19';
-  document.getElementById('breakout').value = '5';
-  document.getElementById('owAccordion').open = true;
-  document.getElementById('breakout').dispatchEvent(new Event('input'));
-  document.getElementById('btnCalc').click();
-});
-</script>
 
 </body>
 </html>
